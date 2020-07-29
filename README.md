@@ -3,7 +3,8 @@
 Access the app at
 
 https://vsj-diabetes-predict-app.herokuapp.com/predict
-Values you can use for demo purpose are
+
+Values you can use for demo purpose are like bellow
 You can enter values like
 Pregnancy 6
 Glucose 142
