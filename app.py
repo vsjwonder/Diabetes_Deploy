@@ -36,7 +36,11 @@ def predictRoute():
             prediction = pred.predict_log(data)
 
             inputdata=pd.DataFrame.from_dict([data])
-            #inputdata=inputdata.transpose()
+            #inputdata=inputdata.to_html()
+
+            print(inputdata)
+            inputdata=inputdata.transpose()
+            print(inputdata)
 
             #result = clintApp.predObj.predict_log(data)
             print('result is        ', prediction)
