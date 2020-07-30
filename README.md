@@ -2,7 +2,7 @@
 
 Access the app at
 
-https://vsj-diabetes-predict-app.herokuapp.com/predict
+https://vsj-diabetes-predict-app.herokuapp.com
 
 Values you can use for demo purpose are like bellow
 
