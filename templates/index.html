@@ -176,20 +176,112 @@
             <input type="number" name="BMI" id="BMI" placeholder="BMI">
             <input type="number" name="DiabetesPedigreeFunction" id="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function">
             <input type="number" name="Age" id="Age" placeholder="Age" step="any">
+            <p></p>
             <input type="submit" value="Predict">
+            <a href="#myDiv" id="myButton"> Check the prediction</a>
+            <script>
+                $('#myButton').click(function() {
+                    $.scrollTo($('#myDiv'), 1000);
+                });
+            </script>
+
+            <!--<p></p>
+            <button onclick="scrollWin()">Check The Prediction!</button><br><br>
+            <script>
+            function scrollWin() {
+              window.scrollTo(0,document.body.scrollHeight);
+            }
+            </script>
+            -->
         </form>
             </div>
-
             <div class="content">
-            <h1 style="text-align:center">Hints to fill the details</h1>
-            <p style="text-align:left"><i>If you're of the Male gender or have not been pregnant before, input 0 </i></p>
-            <p style="text-align:left"><i>Plasma glucose concentration (mg/dL)</i></p>
-            <p style="text-align:left"><i>Diastolic blood pressure (mm Hg)</i></p>
-            <p style="text-align:left"><i>Triceps skin fold thickness (mm)</i></p>
-            <p style="text-align:left"><i>2-Hour serum insulin (mu U/ml)</i></p>
-            <p style="text-align:left"><i>Body Mass Index = (weight in kg/(height in m)^2)</i></p>
-            <p style="text-align:left"><i>A function which scores likelihood of diabetes based on family history</i></p>
-            <p style="text-align:left"><i>Please round off values to nearest integer</i></p>
+                <head>
+                    <style>
+                        table {
+                          border-collapse: collapse;
+                          width: 100%;
+                        }
+
+                        th, td {
+                          padding: 8px;
+                          text-align: left;
+                          border-bottom: 1px solid #ddd;
+                        }
+
+                        tr:hover {background-color:#00FFFF;}
+                    </style>
+                </head>
+                <body>
+                    <h2>Hints to fill the details</h2>
+                    <p></p>
+
+                    <table>
+                      <tr>
+                        <th>Feature</th>
+                        <th>Normal Range</th>
+                        <th>Reference</th>
+                      </tr>
+                      <tr>
+                          <td colspan="3">Pregnancies</td>
+                      </tr>
+                      <tr>
+                          <td></td>
+                          <td colspan="3">If you're of the Male gender or have not been pregnant before, input 0</td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                          <td colspan="3">Plasma glucose concentration</td>
+                      </tr>
+                      <tr>
+                        <td>Glucose (Fasting)</td>
+                        <td>Less than 100 mg/dl</td>
+                        <td><a href="https://www.cdc.gov/diabetes/images/basics/CDC_Diabetes_Social_Ad_Concept_A2_Facebook.png" target="_blank">Reference</a></td>
+                      </tr>
+                      <tr>
+                          <td colspan="3">Diastolic blood pressure (mm Hg)</td>
+                          <td></td>
+                          <td></td>
+                      </tr>
+                      <tr>
+                        <td>Blood Pressure</td>
+                        <td>Less than 80 mm Hg</td>
+                        <td><a href="https://www.herbsetcblog.com/wp-content/uploads/2017/10/Blood-Pressure-chart.jpg" target="_blank">Reference</a></td>
+                      </tr>
+                      <tr>
+                          <td colspan="3">Triceps skin fold thickness (mm)</td>
+                      </tr>
+                      <tr>
+                        <td>Skin Thickness</td>
+                        <td>Men (12.5) Women (18.5) mm</td>
+                        <td><a href="https://basicmedicalkey.com/wxyz-2/" target="_blank">Reference</a></td>
+                      </tr>
+                      <tr>
+                          <td colspan="3">2-Hours serum insulin (mu U/ml)</td>
+                      </tr>
+                      <tr>
+                        <td>Insulin</td>
+                        <td>1.6-16.6 mu U/ml</td>
+                        <td><a href="https://qph.fs.quoracdn.net/main-qimg-41be4f055fb4675d8eb5a38473bec225" target="_blank">Reference</a></td>
+                      </tr>
+                      <tr>
+                          <td colspan="3">Body Mass Index = (weight in kg/(height in m)^2)</td>
+                      </tr>
+                      <tr>
+                        <td>BMI</td>
+                        <td>18.50 kg/m2 - 24.99 kg/m2</td>
+                        <td><a href="https://www.researchgate.net/publication/332192079/figure/tbl1/AS:743945298530304@1554381789076/World-Health-Organization-Classification-of-adults-according-to-BMI.png" target="_blank">Reference</a></td>
+                      </tr>
+                      <tr>
+                          <td colspan="3">A function which scores likelihood of diabetes based on family history</td>
+                      </tr>
+                      <tr>
+                        <td>Diabetes Pedigree Function</td>
+                        <td>Probability of inheritance of a particular diseas</td>
+                        <td><a href="http://www.cubocube.com/dashboard.php?a=1183&b=1271&c=103" target="_blank">Reference</a></td>
+                      </tr>
+                    </table>
+                </body>
             </div>
             <!--<div class="container">
                 <div class="row">
@@ -364,6 +456,7 @@
     <!-- Recent Posts End -->
     <!-- Trust Start -->
     <section class="trust">
+        <div id="myDiv"></div>
         <div class="container">
             <div class="row">
                 <div class="offset-xl-1 col-xl-6" data-aos="fade-right" data-aos-delay="200" data-aos-duration="800">
@@ -374,6 +467,11 @@
                     <div class = "result">
                         <p> The provided sample details are suggesting that patient is </p>
                         <h1>{{result}}</h1>
+
+                            {% block content %}
+                            <h7>Entered values</h7>
+                            {{ inputdata.to_html(classes="table table-bordered") | safe}}
+                            {% endblock %}
                     </div>
                     <!--<h5>Web Design & Development</h5>
                     <ul class="list-unstyled">

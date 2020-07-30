@@ -1,10 +1,12 @@
 
+#from flask_table import Table, Col
 #from wsgiref import simple_server
 from flask import Flask, request, app
 from flask import Response
 from flask import render_template, request,jsonify
 from flask_cors import CORS,cross_origin
 import requests
+import pandas as pd
 from Diabetis_logistic_deploy import predObj
 
 app = Flask(__name__, template_folder='templates', static_folder='assets')
@@ -13,7 +15,7 @@ app.config['DEBUG'] = True
 
 
 @app.route('/',methods=['GET'])  # route to display the home page
-@cross_origin()
+@cross_origin()                                                                            
 def homePage():
     return render_template("index.html")
 
@@ -33,9 +35,12 @@ def predictRoute():
             pred = predObj()
             prediction = pred.predict_log(data)
 
+            inputdata=pd.DataFrame.from_dict([data])
+            #inputdata=inputdata.transpose()
+
             #result = clintApp.predObj.predict_log(data)
             print('result is        ', prediction)
-            return render_template('index.html', result = prediction)
+            return render_template('index.html', result=prediction, inputdata=inputdata)
         else:
             return render_template('index.html', result="value error")
     except Exception as e:
