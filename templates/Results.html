@@ -221,7 +221,7 @@
                     </style>
                 </head>
                 <body>
-                <p></p>
+                    <p></p>
                     <h2>References to fill the particulars</h2>
                     <p></p>
 
@@ -470,17 +470,24 @@
             <div class="row">
                 <div class="offset-xl-1 col-xl-6" data-aos="fade-right" data-aos-delay="200" data-aos-duration="800">
                     <div class="title">
-                        <h6 class="title-primary">Prediction section</h6>
+                        <h6 class="title-primary">Prediction</h6>
+                        <h1>Based on analysis model predicted</h1>
                     </div>
                     <div class = "result">
-                        <p> Please click predict after entering the correct values to check the prediction in this region </p>
+                        <p> The provided sample details are suggesting that patient is </p>
                         <h1>{{result}}</h1>
 
-
-                        <!--
+                            <!--
                             <h6>Entered values for prediction</h6>
                             {{ inputdata }}
-                        -->
+                            -->
+                        <dev>
+                                {% block content %}
+                                <h4>Comparative Report Values For {{result}} Prediction</h4>
+                                {{ inputdata.to_html(classes="table table-striped") | safe}}
+                                {% endblock %}
+                            </dev>
+
 
                     </div>
                     <!--<h5>Web Design & Development</h5>
