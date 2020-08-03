@@ -47,7 +47,7 @@
                 </div>
 
                  <nav class="d-flex aic">
-                    <a href="#" class="login"><i class="fa fa-user" aria-hidden="true"></i>Vivek S Javalkote</a>
+                    <a href="https://www.linkedin.com/in/dr-vivek-j-25b04030/" target="_blank" class="login"><i class="fa fa-user" aria-hidden="true"></i>Vivek S Javalkote</a>
                    <!--<ul class="nav social d-none d-md-flex">
                         <li><a href="https://www.facebook.com/fh5co" target="_blank"><i class="fa fa-facebook"></i></a></li>
                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
@@ -146,14 +146,14 @@
     <!-- Call To Action Start -->
     <section class="cta" data-aos="fade-up" data-aos-delay="0">
         <div class="container">
-            <div class="cta-content d-xl-flex align-items-center justify-content-around text-center text-xl-left">
+            <div class="cta-content d-xl-flex align-items-center justify-content-around text-center text-xl-center">
                 <div class="content" data-aos="fade-right" data-aos-delay="200">
                     <h2>FOR BUILDING THE MODERN HEALTH CARE</h2>
                     <p>AI-ML approach</p>
                     <h6> <a href="https://www.linkedin.com/in/dr-vivek-j-25b04030/"target="_blank"> Reach me @</h6>
                     <li><a  href="https://www.linkedin.com/in/dr-vivek-j-25b04030/" target="_blank"><i class="fa fa-linkedin fa-3x"></i></a></li>
                     <div href="https://lorempixel.com/600/400/" class="row no-gutters h-100" id="lightgallery">
-                        <a class="w-50 h-50 gal-img" data-aos="flip-down"
+                        <a class="container aos-init aos-animate" data-aos="flip-down"
                             data-aos-delay="500" data-aos-duration="4000">
                             <img class="img-fluid" src="assets/images/VivekAI.jpg"  width="150" height="180" alt="Vivek Javalkote">
                         </a>
@@ -184,6 +184,13 @@
             <input type="number" name="BMI" id="BMI" placeholder="BMI" step=".01">
             <input type="number" name="DiabetesPedigreeFunction" id="DiabetesPedigreeFunction" placeholder="Diabetes Pedigree Function" step=".01">
             <input type="number" name="Age" id="Age" placeholder="Age" step="any">
+            <p></p>
+            <label for="Model"> Choose Machine Learning Algorithm for prediction: </label>
+            <select id="Model" name="Model">
+                <option value="Logistic Regression">Logistic Regression</option>
+                <option value="SVM">Support Vector Machine</option>
+                <option value="Random Forest">Random Forest</option>
+            </select>
             <p></p>
             <input type="submit" value="Predict">
             <a href="#myDiv" id="myButton"> Check the prediction</a>
@@ -216,8 +223,9 @@
                           text-align: left;
                           border-bottom: 1px solid #ddd;
                         }
-
                         tr:hover {background-color:#00FFFF;}
+                        td:hover {background-color:#00FFFF;}
+                        th:hover {background-color:#00FFFF;}
                     </style>
                 </head>
                 <body>
@@ -470,10 +478,10 @@
             <div class="row">
                 <div class="offset-xl-1 col-xl-6" data-aos="fade-right" data-aos-delay="200" data-aos-duration="800">
                     <div class="title">
-                        <h6 class="title-primary">Prediction section</h6>
+                        <h1 class="title-primary">Prediction section</h1>
                     </div>
                     <div class = "result">
-                        <p> Please click predict after entering the correct values to check the prediction in this region </p>
+                        <p> Please click the predict button after entering the correct values to check the prediction in this region </p>
                         <h1>{{result}}</h1>
 
 
