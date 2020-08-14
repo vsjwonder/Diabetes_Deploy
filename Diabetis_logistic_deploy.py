@@ -33,7 +33,8 @@ class predObj:
             f1 = 0.79
             precision = 0.78
             recall = 0.79
-        else :
+
+        elif predmodel == "Random Forest":
             with open("RandomForest_ModelForPrediction.pkl", 'rb') as f:
                 model = pickle.load(f)
             data_df = pd.DataFrame(dict_pred,index=[1,])
@@ -43,6 +44,16 @@ class predObj:
             f1 = 0.86
             precision = 0.86
             recall = 0.85
+        else :
+            with open("RandFor_GridOpt_Model.pkl", 'rb') as f:
+                model = pickle.load(f)
+            data_df = pd.DataFrame(dict_pred,index=[1,])
+            scaled_data = scalar.transform(data_df)
+            predict = model.predict(scaled_data)
+            accuracy = 0.89
+            f1 = 0.88
+            precision = 0.88
+            recall = 0.88
 
         if predict[0] ==1 :
             result = 'Diabetic'

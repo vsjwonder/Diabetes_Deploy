@@ -107,6 +107,38 @@ print('RandomForest_F1 Score =',sklearn.metrics.f1_score(y_test, RandomForest_y_
 print('RandomForest_Precision =',sklearn.metrics.precision_score(y_test, RandomForest_y_pred, average="macro"))
 print('RandomForest_Recall =',sklearn.metrics.recall_score(y_test, RandomForest_y_pred, average="macro"))
 
+#Grid Search CV optimised Random forest model
+#from sklearn.model_selection import GridSearchCV
+#rand_clf = RandomForestClassifier(random_state=6)
+# we are tuning three hyperparameters right now, we are passing the different values for both parameters
+#        grid_param = {
+#            "n_estimators" : [100,250,500],
+#            'criterion': ['gini', 'entropy'],
+#            'max_depth' : range(2,20,2),
+#            'min_samples_leaf' : range(1,10,2),
+#            'min_samples_split': range(2,10,2),
+#            'max_features' : ['auto','log2']
+#        }
+# grid_search = GridSearchCV(estimator=rand_clf,param_grid=grid_param,cv=5,n_jobs =2,verbose = 3)
+# grid_search.fit(x_train,y_train)
+#let's see the best parameters as per our grid search
+#grid_search.best_params_
+
+rand_GSOpt = RandomForestClassifier(criterion= 'entropy',
+ max_depth = 14,
+ max_features = 'log2',
+ min_samples_leaf = 1,
+ min_samples_split= 4,
+ n_estimators = 100,random_state=6)
+
+rand_GSOpt.fit(x_train, y_train)
+rand_GSOpt_y_pred = rand_GSOpt.predict(x_test)
+print('Accuracy of Random Forest on test set: {:.2f}'.format(RandomForestModel.score(x_test, y_test)))
+
+print('rand_GSOpt_F1 Score =',sklearn.metrics.f1_score(y_test, rand_GSOpt_y_pred, average="macro"))
+print('rand_GSOpt_Precision =',sklearn.metrics.precision_score(y_test, rand_GSOpt_y_pred, average="macro"))
+print('rand_GSOpt_Recall =',sklearn.metrics.recall_score(y_test, rand_GSOpt_y_pred, average="macro"))
+
 # Saving the different models and std scalar file
 
 import pickle
@@ -120,6 +152,9 @@ with open('SVM_ModelForPrediction.pkl', 'wb') as f:
 
 with open('RandomForest_ModelForPrediction.pkl', 'wb') as f:
     pickle.dump(RandomForestModel, f)
+
+with open('RandFor_GridOpt_Model.pkl', 'wb') as f:
+    pickle.dump(rand_GSOpt, f)
 
 with open('standardScalar.pkl', 'wb') as f:
     pickle.dump(scalar, f)
