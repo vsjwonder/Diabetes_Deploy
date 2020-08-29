@@ -481,14 +481,14 @@
                     </div>
                     <div class = "result">
                         <h3> The provided sample details are suggesting that patient is </h3>
-                        <h1>{{result}}</h1>
+                        <h1><span style="color:red">{{result}}</span></h1>
 
-                        <h5> Note that {{predmodel}} is {{accuracy}}% accurate </h5>
-                        <h5>{{predmodel}} has a precision of {{precision}}% in other words, when it predicts, it is correct
-                            {{precision}}% of the time</h5>
-                        <h5>{{predmodel}} has a recall of {{recall}}% in other words, it correctly predict {{recall}}% out of all positive samples in test data</h5>
-                        <h5>{{predmodel}} shows F1 score of {{f1}}</h5>
-                        <h5>F1 score an optimal blend of precision and recall. In other words, a good F1 score means that you have low false positives and low false negatives, so you’re correctly identifying real threat and you are not disturbed by false alarm.</h5>
+                        <h5> Note that <span style="color:Aqua">{{predmodel}}</span> is <span style="color:DeepPink"> {{accuracy}}%</span> accurate </h5>
+                        <h5>{{predmodel}} has a <span style="color:Fuchsia">precision</span> of <span style="color:DeepPink">{{precision}}%</span> in other words, when it predicts, it is correct
+                            <span style="color:DeepPink">{{precision}}% </span>of the time</h5>
+                        <h5>{{predmodel}} has a <span style="color:Fuchsia">recall</span> of <span style="color:DeepPink">{{recall}}%</span> in other words, it correctly predict <span style="color:DeepPink">{{recall}}%</span> out of all positive samples in test data</h5>
+                        <h5>{{predmodel}} shows <span style="color:Fuchsia">F1 score</span> of <span style="color:DeepPink">{{f1}}</span></h5>
+                        <h5>F1 score an optimal blend of precision and recall. In other words, a good F1 score means that you have low <span style="color:Aqua">false positives and low false negatives</span>, so you’re correctly identifying real threat and you are not disturbed by false alarm.</h5>
 
 
                             <!--

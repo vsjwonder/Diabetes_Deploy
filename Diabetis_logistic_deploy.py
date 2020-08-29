@@ -44,7 +44,7 @@ class predObj:
             f1 = 0.86
             precision = 0.86
             recall = 0.85
-        else :
+        elif predmodel == "Optimised Random Forest":
             with open("RandFor_GridOpt_Model.pkl", 'rb') as f:
                 model = pickle.load(f)
             data_df = pd.DataFrame(dict_pred,index=[1,])
@@ -54,6 +54,16 @@ class predObj:
             f1 = 0.88
             precision = 0.88
             recall = 0.88
+        else :
+            with open("XGBoost.pkl", 'rb') as f:
+                model = pickle.load(f)
+            data_df = pd.DataFrame(dict_pred,index=[1,])
+            scaled_data = scalar.transform(data_df)
+            predict = model.predict(scaled_data)
+            accuracy = 0.90
+            f1 = 0.89
+            precision = 0.89
+            recall = 0.89
 
         if predict[0] ==1 :
             result = 'Diabetic'

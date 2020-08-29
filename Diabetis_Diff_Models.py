@@ -139,6 +139,39 @@ print('rand_GSOpt_F1 Score =',sklearn.metrics.f1_score(y_test, rand_GSOpt_y_pred
 print('rand_GSOpt_Precision =',sklearn.metrics.precision_score(y_test, rand_GSOpt_y_pred, average="macro"))
 print('rand_GSOpt_Recall =',sklearn.metrics.recall_score(y_test, rand_GSOpt_y_pred, average="macro"))
 
+# Ensemble Models
+
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.naive_bayes import GaussianNB
+import mlxtend
+from mlxtend.classifier import StackingClassifier
+lr=LogisticRegression()
+knn=KNeighborsClassifier()
+svm=SVC(probability=True)
+NB=GaussianNB()
+DT=DecisionTreeClassifier()
+
+sclf=StackingClassifier(classifiers=[svm, lr, knn, DT, rand_GSOpt], use_probas=True, meta_classifier=rand_GSOpt)
+sclf.fit(x_train, y_train)
+sclf_y_pred = sclf.predict(x_test)
+print('Accuracy of ensembeled stacking model classifier on test set: {:.2f}'.format(sclf.score(x_test, y_test)))
+
+print('sclf_F1 Score =',sklearn.metrics.f1_score(y_test, sclf_y_pred, average="macro"))
+print('sclf_Precision =',sklearn.metrics.precision_score(y_test, sclf_y_pred, average="macro"))
+print('sclf_Recall =',sklearn.metrics.recall_score(y_test, sclf_y_pred, average="macro"))
+
+import xgboost
+from xgboost import XGBClassifier
+XGBoost=XGBClassifier(learning_rate= 0.2, max_depth= 2, n_estimators= 43)
+XGBoost.fit(x_train,y_train)
+XGBoost_y_pred = XGBoost.predict(x_test)
+
+print('Accuracy of XGBoost on test set: {:.2f}'.format(XGBoost.score(x_test, y_test)))
+
+print('XGBoost_F1 Score =',sklearn.metrics.f1_score(y_test, XGBoost_y_pred, average="macro"))
+print('XGBoost_Precision =',sklearn.metrics.precision_score(y_test, XGBoost_y_pred, average="macro"))
+print('XGBoost_Recall =',sklearn.metrics.recall_score(y_test, XGBoost_y_pred, average="macro"))
 # Saving the different models and std scalar file
 
 import pickle
@@ -155,6 +188,12 @@ with open('RandomForest_ModelForPrediction.pkl', 'wb') as f:
 
 with open('RandFor_GridOpt_Model.pkl', 'wb') as f:
     pickle.dump(rand_GSOpt, f)
+
+with open('Ensemble_Models.pkl', 'wb') as f:
+    pickle.dump(sclf, f)
+
+with open('XGBoost.pkl', 'wb') as f:
+    pickle.dump(XGBoost, f)
 
 with open('standardScalar.pkl', 'wb') as f:
     pickle.dump(scalar, f)
